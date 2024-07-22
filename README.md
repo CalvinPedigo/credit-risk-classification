@@ -1,2 +1,16 @@
 # credit-risk-classification
 UofU Data Analytics Module 20 Challenge
+
+This analysis is performed on the credit_risk_classification jupyter notebook document included in this repository. This report aims to explain what this model does, it's results, the model's accuracy, methods and functions used, among others. To start, this model looks at some lending loans, including data such as loan size, interest on the loan, total debt, etc. to predict whether or not a given loan should be considered "healthy" or "high risk". Using the test train split module, 2 variables are denoted by X and y, being all the data (excluding loan status) and the actual loan status itself, respectively. Then, using logistic regression, I can fit the training data to our model. I chose the Limited-memory Broyden–Fletcher–Goldfarb–Shanno Algorithm (or lbfgs for short) simply because it's not only the default solver but because this dataset is relatively small, which lbfgs works well with memory-wise. Then, using the test data, I make predictions. I also save this to a dataframe to look at it visually. Afterwards, I generate a confusion matrix and classification report to further study the data. Now, let's look closer at it's results!
+
+1. Accuracy
+    The overall accuracy is actually quite high, showing that the model is quite accurate. The important word here is overall, though, which I will go over next, but in terms of accuracy, especially for predicting healthy loans, it performs pretty demonstrably with an accuracy of 99%.
+
+2. Precision
+    Precision is essentially comparing the true positives with all the positives, and vise versa. For finding healthy loans, we can see that it almost always accurately predicts healthy loans to be healthy, which is great! But the problem lies with the model's precision of high risk loans, which it does somewhat poorly, with it only predicting accurately 84% of the time. While in a bubble this is fine, in the real world this could be what denies someone actually eligible for a loan or not, and with 15% of these people getting denied, this is too poor a precision ratio to be considered amazing, and would need further review.
+
+3. Recall
+    Recall tells us if the model can actually pinpoint the objects in the target class, so in this case if it can actually tell which class someone would fall under. Mirrored with precision, we can see that healthy loans are predicted quite well, with recall sitting at 99%. It actually isn't too bad for high risk loans either, with it's recall at 94%, so essentially for every 100 high risk loans, 94 of them would be correctly labeled as high risk.
+
+To summarize everything talked about, this model's ability to identify loan class is good. It predicts with about a 99% accuracy for healthy loans, and 84% for high risk loans. I believe that in this case, it would be more important to be able to predict high risk loans more so than low risk loans, which this model unfortunately does not do.
+Would I recommend this model? It depends, as the scores for this model really could make an argument for using this model or not, but I would say it could be recommended for use. In the real world, I would advise that any high risk loan identified should be further looked at, but as a general sorter it accomplishes it's job without making too many errors.
